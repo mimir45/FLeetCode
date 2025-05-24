@@ -17,13 +17,17 @@ public class ValidParentheses {
         map.put('}','{');
         map.put(')','(');
         map.put(']','[');
-        for (int i =0;i<s.length();i++) {
-            if (stack.peek() == map.get(s.charAt(i))) {
-                stack.pop();
+        for (char c : s.toCharArray()){
+            if(map.containsKey(c)){
+                if(!stack.isEmpty()&&stack.peek().equals(map.get(c))){
+                    stack.pop();
+                }else {
+                    return false;
+                }
+            }else {
+                stack.push(c);
             }
-            stack.push(s.charAt(i));
         }
-
 
         return stack.isEmpty();
     }
